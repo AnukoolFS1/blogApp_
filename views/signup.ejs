@@ -2,19 +2,30 @@
 <html lang="en">
 <head>
     <%- include("./components/head") %>
-    <title>Sign up</title>
+        <title>Sign up</title>
 </head>
 <body>
     <%- include("./components/nav") %>
-    <h1>Sign up</h1>
+        <h1>Sign up</h1>
 
-    <form action="">
-        <input type="text" name="name">
-        <input type="text" email="email">
-        <input type="text" password="">
-        <input type="text" >
-        <input type="text">
-    </form>
-    <%- include("./components/script") %>
+            <form class="container mt-5" action="/signup" method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="Email" name="email" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+
+<%- include("./components/script") %>
 </body>
 </html>
