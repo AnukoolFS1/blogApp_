@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <%- include("./components/head") %>
-    <title>Sign in</title>
+        <title>Sign in</title>
 </head>
 <body>
-    <%- include("./components/nav") %>
+<%- include("./components/nav") %>
 
-    <a href="/signup">signup</a>
-    <%- include("./components/script") %>
+        <% if(!locals.user) { %>
+            <%= user %>
+        <% } %>
+
+
+<%- include("./components/script") %>
 </body>
 </html>
