@@ -14,18 +14,27 @@ router.get('/signin', (req, res) => {
 })
 
 router.post('/signin', async (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
 
-    const isMatched = await Users.checkPassword(email, password)
+    try {
 
-    console.log(isMatched)
-    if(!isMatched) return res.redirect("/signin")
+        const token = await Users.checkPassword(email, password)
 
-    return res.render("succes")
+        if (!token) {return res.render("signin",  {
+            error: "Incorrect email or password"
+        })}
+
+        return res.cookie("token", token).render("home")
+    }catch(err){
+        console.error(err);
+        res.render("signin", {
+            error: "server error"
+        })
+    }
 })
 
-router.post('/signup',async (req, res) => {
-    const {fullName, email, password} = req.body;
+router.post('/signup', async (req, res) => {
+    const { fullName, email, password } = req.body;
 
     await Users.create({
         fullName, email, password
