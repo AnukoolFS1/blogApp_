@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./components/head") %>
+        <title>Add blog page</title>
+</head>
+<body>
+<%- include("./components/nav") %>
+
+        <h1>Add Blog</h1>
+
+        <form action="">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+                <label for="title">Email address</label>
+              </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Write the blog" id="body" name="body"></textarea>
+                <label for="body">Comments</label>
+              </div>
+              <div class="mb-3">
+                <label for="img" class="form-label">Choose an image</label>
+                <input class="form-control" type="file" id="img" name="img">
+              </div>
+        </form>
+
+
+<%- include("./components/script") %>
+</body>
+</html>
