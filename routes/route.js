@@ -2,7 +2,7 @@ const Users = require('../models/users')
 const router = require("express").Router()
 
 router.get('/', (req, res) => {
-    res.render("home", {user: JSON.stringify(req.user)})
+    res.render("home", {user: req.user})
 })
 
 router.get("/signup", (req, res) => {
@@ -28,7 +28,7 @@ router.post('/signin', async (req, res) => {
             error: "Incorrect email or password"
         })}
 
-        return res.cookie("token", token).render("home", {user: req.user})
+        return res.cookie("token", token).redirect("/")
     }catch(err){
         console.error(err);
         res.render("signin", {
