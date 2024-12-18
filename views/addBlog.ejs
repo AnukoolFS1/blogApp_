@@ -9,10 +9,10 @@
 
         <h1>Add Blog</h1>
 
-        <form action="/blog" method="post" class="container">
+        <form action="/addBlog" method="post" class="container" enctype="multipart/form-data">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="title" placeholder="Title" name="title">
-                <label for="title">Email address</label>
+                <label for="title">Title</label>
               </div>
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Write the blog" id="body" name="body"></textarea>
