@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         } else {
             fs.mkdir(userDir, (err) => {
                 if (err) return console.log(err)
-                else cb(null, path.resolve(`./public/uploads/${req.user._id}`))
+                else cb(null, path.resolve(`./uploads/${req.user._id}`))
             })
         }
     },
@@ -31,7 +31,7 @@ routerBlog.get("/", (req, res) => {
 routerBlog.post("/", upload.single('img'), async (req, res) => {
     const { title, body } = req.body
     await BlogModel.create({
-        title, body, createdBy:req.user._id, coverImgUrl: `/public/uploads/${req.user._id}/${req.file.filename}`
+        title, body, createdBy:req.user._id, coverImgUrl: `./public/uploads/${req.user._id}/${req.file.filename}`
     })
     
     res.redirect("/")

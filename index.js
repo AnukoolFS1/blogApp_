@@ -10,8 +10,8 @@ const PORT = 3000;
 
 connect()
 app.use(express.urlencoded({extended: false}))
-app.use(express.static(path.resolve("./public")))
 app.use(cookieParser())
+app.use(express.static(path.resolve("./public")))
 app.set("view engine", "ejs")
 app.use(checkForAuthCookie("token"))
 
