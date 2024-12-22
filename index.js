@@ -16,5 +16,6 @@ app.set("view engine", "ejs")
 app.use(checkForAuthCookie("token"))
 
 app.use('/', router)
+app.use('/blog', routerBlog)
 app.use("/addblog", routerBlog)
 app.listen(PORT, () => console.log('server has initiated'))

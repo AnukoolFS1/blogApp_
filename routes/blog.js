@@ -1,5 +1,5 @@
 const routerBlog = require("express").Router();
-const BlogModel = require('../models/blogs') 
+const BlogModel = require('../models/blogs')
 const multer = require("multer");
 const path = require('node:path');
 const fs = require('node:fs');
@@ -25,16 +25,25 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 routerBlog.get("/", (req, res) => {
-    res.render("addBlog", { user: req.user })
+    if(!req.user) return res.redirect("/signin")
+    else res.render("addBlog", { user: req.user })
 })
 
 routerBlog.post("/", upload.single('img'), async (req, res) => {
     const { title, body } = req.body
     await BlogModel.create({
-        title, body, createdBy:req.user._id, coverImgUrl: `./public/uploads/${req.user._id}/${req.file.filename}`
+        title, body, createdBy: req.user._id, coverImgUrl: `/uploads/${req.user._id}/${req.file.filename}`
     })
-    
-    res.redirect("/")
+
+    res.render("blog", {blog, user: req.user})
+})
+
+routerBlog.get("/:id", async (req, res) => {
+    const blog = await BlogModel.findById(req.params.id);
+    return res.render('blog', {
+        blog, user: req.user
+    })
+
 })
 
 module.exports = routerBlog

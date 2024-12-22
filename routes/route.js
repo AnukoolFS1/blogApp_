@@ -4,7 +4,6 @@ const BlogModel =require('../models/blogs')
 
 router.get('/', async (req, res) => {
     const blogs = await BlogModel.find().sort({createdAt: -1})
-    console.log(blogs)
     res.render("home", {user: req.user, blogs})
 })
 
